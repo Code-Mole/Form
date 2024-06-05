@@ -4,9 +4,9 @@ import bcrypt from "bcrypt";
 const getUsers = async (req, res) => {
   try {
     const users = await userModel.find();
-    res.status(200).json({ message: "successful", users });
+    return res.status(200).json({ message: "successful", users });
   } catch (error) {
-    res.status(404).send("Data not found");
+    return res.status(404).send("Data not found");
     console.log(error);
   }
 };
@@ -14,9 +14,9 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const user = await userModel.findById(req.params.id);
-    res.status(200).json({ message: "successful", user });
+    return res.status(200).json({ message: "successful", user });
   } catch (error) {
-    res.status(404).send("user not found");
+    return res.status(404).send("user not found");
     console.log(error);
   }
 };
@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
   try {
     const { userName, email, password } = req.body;
     if (!userName || !email || !password) {
-      res.status(400).send("All fields are required");
+      return res.status(400).send("All fields are required");
     }
     const hashedpassword = await bcrypt.hash(password, 10);
     console.log(hashedpassword);
@@ -34,19 +34,19 @@ const createUser = async (req, res) => {
       email,
       password: hashedpassword,
     });
-    res.status(201).json({ message: "successful", user });
+    return res.status(201).json({ message: "successful", user });
   } catch (error) {
-    res.status(500).send("server error");
+    return res.status(500).send("server error");
     console.log(error);
   }
 };
 // put
 const updateUser = (req, res) => {
-  res.send(`update user by Id ${req.params.id} `);
+  return res.send(`update user by Id ${req.params.id} `);
 };
 // delete
 const removeUser = (req, res) => {
-  res.send(`remove user by Id ${req.params.id} `);
+  return res.send(`remove user by Id ${req.params.id} `);
 };
 
 export { getUsers, getUser, createUser, updateUser, removeUser };

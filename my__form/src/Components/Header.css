@@ -13,7 +13,7 @@
   width: 100%;
   padding: 15px;
 }
-form input {
+.form input {
   width: 100%;
   padding: 8px;
   font-size: 20px;
@@ -21,14 +21,14 @@ form input {
   border: none;
   border-bottom: 2px solid black;
 }
-form input:focus {
+.form input:focus {
   outline: none;
 }
-form input::placeholder {
+.form input::placeholder {
   font-size: 15px;
   color: #c9c7c7;
 }
-form button {
+.form button {
   width: 100%;
   padding: 8px;
   margin: 10px 0;
@@ -38,7 +38,7 @@ form button {
   cursor: pointer;
   font-size: 15px;
 }
-form button:hover {
+.form button:hover {
   background-color: #fe9900;
   color: #fff;
 }
