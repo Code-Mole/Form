@@ -1,4 +1,5 @@
 import express from "express";
+import "./Models/db.js";
 import { userRouter } from "./routes/userRouter.js";
 import cors from "cors";
 
