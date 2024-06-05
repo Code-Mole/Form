@@ -8,3 +8,37 @@
   font-weight: bold;
   background-color: #c9c7c7;
 }
+
+.container {
+  width: 100%;
+  padding: 15px;
+}
+form input {
+  width: 100%;
+  padding: 8px;
+  font-size: 20px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid black;
+}
+form input:focus {
+  outline: none;
+}
+form input::placeholder {
+  font-size: 15px;
+  color: #c9c7c7;
+}
+form button {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  background-color: #c9c7c7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+form button:hover {
+  background-color: #fe9900;
+  color: #fff;
+}
