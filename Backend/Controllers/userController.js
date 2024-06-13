@@ -40,8 +40,26 @@ const createUser = async (req, res) => {
     console.log(error);
   }
 };
-const loginUser = (req, res) => {
-  res.send("login");
+const loginUser = async (req, res) => {
+  // res.send("login");
+  try {
+    const user = await userModel.findOne({ email: req.body.email });
+    if (!user) {
+      res.status(404).json({ message: "user not fount" });
+    }
+    const checkPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!checkPassword) {
+      res.status(404).json({ message: "password not correct" });
+    } else {
+      res.status(200).json({ message: "successful", user });
+    }
+  } catch (err) {
+    console.log(err);
+    res.send(err.message);
+  }
 };
 // put
 const updateUser = (req, res) => {
