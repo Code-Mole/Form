@@ -9,12 +9,39 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
+  const data = { email, password };
+
   const HandelSubmit = (e) => {
     e.preventDefault();
+
+    axios
+      .post("http://localhost:5059/api/users/login", data)
+      .then((res) => {
+        setMessage(res.data.message);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     setEmail("");
     setPassword("");
   };
+
+  const fetchData = (req, res) => {
+    axios
+      .get("http://localhost:5059/api/users/")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [message]);
   return (
     <div className="form">
       <div className="container">
