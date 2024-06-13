@@ -40,6 +40,9 @@ const createUser = async (req, res) => {
     console.log(error);
   }
 };
+const loginUser = (req, res) => {
+  res.send("login");
+};
 // put
 const updateUser = (req, res) => {
   return res.send(`update user by Id ${req.params.id} `);
@@ -49,4 +52,4 @@ const removeUser = (req, res) => {
   return res.send(`remove user by Id ${req.params.id} `);
 };
 
-export { getUsers, getUser, createUser, updateUser, removeUser };
+export { getUsers, getUser, createUser, updateUser, removeUser, loginUser };
