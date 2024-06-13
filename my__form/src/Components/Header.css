@@ -42,3 +42,12 @@
   background-color: #fe9900;
   color: #fff;
 }
+.para {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link {
+  margin-left: 5px;
+  text-decoration: none;
+}

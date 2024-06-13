@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import Header from "./Header.js";
 import "./Header.css";
 
 function Form() {
@@ -59,6 +61,7 @@ function Form() {
   return (
     <div className="form">
       <div className="container">
+        <Header />
         <form className="form">
           <input
             type="text"
@@ -88,6 +91,12 @@ function Form() {
           >
             Submit
           </button>
+          <p className="para">
+            Have an account{" "}
+            <Link className="link" to="/login">
+              login
+            </Link>
+          </p>
         </form>
       </div>
     </div>
