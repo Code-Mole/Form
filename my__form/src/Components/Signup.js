@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header.js";
 import "./Header.css";
 
-function Form() {
+function Signup() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,53 +16,47 @@ function Form() {
     password,
   };
 
+  const usenavigate = useNavigate();
+
   const Alert = () => {
-    alert(message);
+    console.log(message);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   // Perform form submission logic here
-  //   console.log(data);
-  // try {
-  //   await axios.post("http://localhost:5059/api/users", data).then((res) => {
-  //     setMessage(res.data);
-  //     console.log(res.data);
-  //   });
-  //   console.log("Data sent to server");
-  // } catch (err) {
-  //   console.log(err);
-  // }
-  // };
-  const resgister = async () => {
-    try {
-      await axios.post("http://localhost:5059/api/users", data).then((res) => {
-        setMessage(res.data);
+  const resgister = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5059/api/users", data)
+      .then((res) => {
+        setMessage(res.data.message);
         console.log(res.data);
+        // navigate to login page
+        usenavigate("/");
+        console.log("signed up successful");
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
-      console.log("Data sent to server");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5059/api/users");
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
+  const fetchData = async () => {
+    await axios
+      .get("http://localhost:5059/api/users")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   useEffect(() => {
     fetchData();
-  }, [message]);
+  }, []);
 
   return (
     <div className="form">
       <div className="container">
         <Header />
-        <form className="form">
+        <form className="form" onSubmit={resgister}>
           <input
             type="text"
             name=""
@@ -103,4 +97,18 @@ function Form() {
   );
 }
 
-export default Form;
+export default Signup;
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   // Perform form submission logic here
+//   console.log(data);
+// try {
+//   await axios.post("http://localhost:5059/api/users", data).then((res) => {
+//     setMessage(res.data);
+//     console.log(res.data);
+//   });
+//   console.log("Data sent to server");
+// } catch (err) {
+//   console.log(err);
+// }
+// };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header.js";
 import "./Header.css";
@@ -8,6 +8,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const usenavigate = useNavigate();
 
   const data = { email, password };
 
@@ -19,6 +21,9 @@ export default function Login() {
       .then((res) => {
         setMessage(res.data.message);
         console.log(res.data);
+        // navigate to home
+        usenavigate("/");
+        console.log("login successful");
       })
       .catch((err) => {
         console.log(err);
