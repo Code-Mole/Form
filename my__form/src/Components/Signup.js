@@ -18,11 +18,12 @@ function Signup() {
 
   const usenavigate = useNavigate();
 
-  const Alert = () => {
-    console.log(message);
-  };
+  // const Alert = () => {
+  //   console.log(message);
+  // };
 
-  const resgister = (e) => {
+  function resgister(e) {
+    console.log(e);
     e.preventDefault();
     axios
       .post("http://localhost:5059/api/users", data)
@@ -30,13 +31,13 @@ function Signup() {
         setMessage(res.data.message);
         console.log(res.data);
         // navigate to login page
-        usenavigate("/");
+        usenavigate("/home");
         console.log("signed up successful");
       })
       .catch((err) => {
         console.log(err.message);
       });
-  };
+  }
 
   const fetchData = async () => {
     await axios
@@ -56,7 +57,7 @@ function Signup() {
     <div className="form">
       <div className="container">
         <Header />
-        <form className="form" onSubmit={resgister}>
+        <form className="form" onSubmit={(e) => resgister(e)}>
           <input
             type="text"
             name=""
@@ -65,13 +66,15 @@ function Signup() {
           />
           <input
             type="email"
-            name=""
+            name="email"
+            value={email}
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
-            name=""
+            name="password"
+            value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -80,7 +83,6 @@ function Signup() {
             className="btn"
             onClick={() => {
               resgister();
-              Alert();
             }}
           >
             Submit

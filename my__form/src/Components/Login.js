@@ -22,7 +22,7 @@ export default function Login() {
         setMessage(res.data.message);
         console.log(res.data);
         // navigate to home
-        usenavigate("/");
+        usenavigate("/home");
         console.log("login successful");
       })
       .catch((err) => {
